@@ -35,13 +35,13 @@ def readLine(line, characters):
         #print(characters[0])
         key = characters[x]
         if key in lastkey:
-          rc = call("echo \'hold " + str(key) + "\' | /home/pi/pizero-usb-hid-keyboard/hid-gadget-test /dev/hidg0 keyboard",shell=True)
+          rc = call("echo \'hold " + str(key) + "\' | pizero-usb-hid-keyboard/hid-gadget-test /dev/hidg0 keyboard",shell=True)
         else:
-          rc = call("echo \'" + str(key) + "\' | /home/pi/pizero-usb-hid-keyboard/hid-gadget-test /dev/hidg0 keyboard",shell=True)
+          rc = call("echo \'" + str(key) + "\' | pizero-usb-hid-keyboard/hid-gadget-test /dev/hidg0 keyboard",shell=True)
           lastkey.append(key)
     for y in range(5):
       if(GPIO.input(C[y]) == GPIO.LOW):
-        rc = call("echo \'quit "+ characters[y] + "\' | /home/pi/pizero-usb-hid-keyboard/hid-gadget-test /dev/hidg0 keyboard",shell=True)
+        rc = call("echo \'quit "+ characters[y] + "\' | pizero-usb-hid-keyboard/hid-gadget-test /dev/hidg0 keyboard",shell=True)
         if characters[y] in lastkey: lastkey.remove(characters[y])
     GPIO.output(line, GPIO.LOW)
 
